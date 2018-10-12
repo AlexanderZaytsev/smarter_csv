@@ -58,7 +58,7 @@ module SmarterCSV
             raise $!, "#{$!} [SmarterCSV: csv line #{csv_line_count}]", $!.backtrace
           end
         else
-          file_headerA =  header.split(options[:col_sep])
+          file_headerA =  header.split(options[:col_sep], -1)
         end
         file_headerA.map!{|x| x.gsub(%r/#{options[:quote_char]}/,'') }
         file_headerA.map!{|x| x.strip}  if options[:strip_whitespace]
@@ -154,7 +154,7 @@ module SmarterCSV
             raise $!, "#{$!} [SmarterCSV: csv line #{csv_line_count}]", $!.backtrace
           end
         else
-          dataA =  line.split(options[:col_sep])
+          dataA =  line.split(options[:col_sep], -1)
         end
 ####     dataA.map!{|x| x.gsub(%r/#{options[:quote_char]}/,'') }  # this is actually not a good idea as a default
         dataA.map!{|x| x.strip}  if options[:strip_whitespace]
